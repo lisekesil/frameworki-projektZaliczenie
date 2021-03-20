@@ -11,13 +11,20 @@ const Wrapper = styled.div`
 const SearchInput = styled.input`
   text-align: center;
   width: 300px;
+  padding: 8px;
+  border: 1px solid #ddd;
+`;
+
+const Loupe = styled.img`
+  position: relative;
+  left: -25px;
 `;
 
 const Search: FC = () => {
   return (
     <Wrapper>
       <SearchInput placeholder="Search Legalcluster" />
-      <img src="./icons/search.png" alt="" />
+      <Loupe src="./icons/search.png" alt="" />
     </Wrapper>
   );
 };

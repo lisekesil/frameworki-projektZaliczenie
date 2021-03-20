@@ -1,26 +1,111 @@
 import React, { FC } from 'react';
+import styled from 'styled-components';
+
+import { Colors } from '../../styledHelpers/Colors';
+import { fontSize } from '../../styledHelpers/FontSizes';
+
+const Wrapper = styled.div`
+  margin: 10px 15px;
+  padding: 15px;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${Colors.white};
+  border: 1px solid ${Colors.lightgrey};
+`;
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  border-bottom: 1px solid ${Colors.lightgrey};
+`;
+
+const ProfilePhoto = styled.div`
+  background-image: url('./icons/bor.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+`;
+
+const ProfileName = styled.p`
+  color: ${Colors.blue};
+  margin: 10px;
+  font-weight: 700;
+  font-size: ${fontSize[18]};
+`;
+
+const ProfileTitle = styled.p`
+  color: ${Colors.grey};
+  font-size: ${fontSize[16]};
+`;
+
+const Option = styled.div`
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const OptionInnerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+const OptionImage = styled.img`
+  margin-right: 10px;
+`;
+
+const OptionName = styled.p`
+  font-weight: 700;
+  color: ${Colors.darkblue};
+`;
+
+const OptionButton = styled.button`
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 7px;
+  border: 1px solid ${Colors.darkblue};
+  border-radius: 5px;
+
+  cursor: pointer;
+`;
 
 export const LeftMenu: FC = () => {
   return (
-    <div>
-      <div>
-        <img src="" alt="" />
-        <p>Job title - Company</p>
-      </div>
-      <div>
-        <img src="./icons/network.png" alt="" />
-        <p>Your Network</p>
-        <button>
+    <Wrapper>
+      <ProfileContainer>
+        <ProfilePhoto />
+        <ProfileName>Matt Bor</ProfileName>
+        <ProfileTitle>Job title - Company</ProfileTitle>
+      </ProfileContainer>
+      <Option>
+        <OptionInnerWrapper>
+          <OptionImage src="./icons/network.png" alt="" />
+          <OptionName>Your network</OptionName>
+        </OptionInnerWrapper>
+        <OptionButton>
           <img src="./icons/user-plus.png" alt="" />
-        </button>
-      </div>
-      <div>
-        <img src="./icons/publications.png" alt="" />
-        <p>Your Publications</p>
-        <button>
+        </OptionButton>
+      </Option>
+      <Option>
+        <OptionInnerWrapper>
+          <OptionImage src="./icons/publications.png" alt="" />
+          <OptionName>Your Publications</OptionName>
+        </OptionInnerWrapper>
+        <OptionButton>
           <img src="./icons/plus.png" alt="" />
-        </button>
-      </div>
-    </div>
+        </OptionButton>
+      </Option>
+    </Wrapper>
   );
 };

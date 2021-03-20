@@ -2,12 +2,28 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import Search from '../common/Search/Search';
 
-import { Wrapper } from '../../styledHelpers/Components';
 import { Colors } from '../../styledHelpers/Colors';
 
 const InnerWrapper = styled.div`
-  width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: ${Colors.white};
+`;
+
+const Logo = styled.img`
+  width: 32px;
+  margin: 0 15px;
+`;
+
+const LogoSelectWrapper = styled.div`
+  display: flex;
+`;
+
+const SelectPage = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const NavList = styled.ul`
@@ -22,11 +38,14 @@ const RightIcons = styled.div``;
 
 export const TopNav: FC = () => {
   return (
-    <Wrapper>
-      <div>
-        <img src="./icons/house2.png" alt="" />
-        <nav>Home</nav>
-      </div>
+    <InnerWrapper>
+      <LogoSelectWrapper>
+        <Logo src="./icons/logo.png" alt="" />
+        <SelectPage>
+          <img src="./icons/house2.png" alt="" />
+          <p>Home</p>
+        </SelectPage>
+      </LogoSelectWrapper>
       <Search />
       <NavList>
         <NavListItem>
@@ -45,6 +64,6 @@ export const TopNav: FC = () => {
           </a>
         </NavListItem>
       </NavList>
-    </Wrapper>
+    </InnerWrapper>
   );
 };
