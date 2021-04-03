@@ -11,27 +11,29 @@ const Item = styled.li`
    font-size: ${fontSize[16]};
    font-weight: 700;
    color: ${Colors.darkblue};
-   margin: 15px 30px;
+   margin: 0 30px 0 5px;
+   padding: 10px;
    box-sizing: border-box;
 `;
 
-const ItemImg = styled.img`
+const Icon = styled.img`
    width: 25px;
    margin-right: 15px;
 `;
 
-export interface LeftMenuListItemProps {
+export interface DropdownItemProps {
    imgSrc: string;
    label: string;
+   onClick: () => void;
 }
 
-const LeftMenuListItem: React.FC<LeftMenuListItemProps> = ({ imgSrc, label }) => {
+const DropdownItem: React.FC<DropdownItemProps> = ({ imgSrc, label, onClick }) => {
    return (
-      <Item>
-         <ItemImg src={imgSrc} alt={label} />
+      <Item onClick={onClick}>
+         <Icon src={imgSrc} alt={label} />
          <span>{label}</span>
       </Item>
    );
 };
 
-export default LeftMenuListItem;
+export default DropdownItem;

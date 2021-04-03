@@ -1,17 +1,23 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
 import Search from '../common/Search/Search';
 
 import { Colors } from '../../styledHelpers/Colors';
+import Dropdown from './Dropdown';
 
-const InnerWrapper = styled.div`
+const Wrapper = styled.div`
+   position: relative;
    width: 100%;
    display: flex;
    justify-content: space-between;
    align-items: center;
    background-color: ${Colors.white};
+
+   border-radius: 7px;
+   box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
+   -webkit-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
+   -moz-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
 `;
 
 const Logo = styled.img`
@@ -21,11 +27,6 @@ const Logo = styled.img`
 
 const LogoSelectWrapper = styled.div`
    display: flex;
-`;
-
-const SelectPage = styled.div`
-   display: flex;
-   align-items: center;
 `;
 
 const NavList = styled.ul`
@@ -40,14 +41,11 @@ const NavListItem = styled.li`
 
 export const TopNav: FC = () => {
    return (
-      <InnerWrapper>
+      <Wrapper>
          <LogoSelectWrapper>
             <Logo src="./icons/logo.png" alt="" />
-            <SelectPage>
-               <img src="./icons/house2.png" alt="" />
-               <Link to="/">Home</Link>
-            </SelectPage>
          </LogoSelectWrapper>
+         <Dropdown />
          <Search />
          <NavList>
             <NavListItem>
@@ -66,6 +64,6 @@ export const TopNav: FC = () => {
                </a>
             </NavListItem>
          </NavList>
-      </InnerWrapper>
+      </Wrapper>
    );
 };

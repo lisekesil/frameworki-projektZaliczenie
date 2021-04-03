@@ -39,6 +39,7 @@ export const MainPage: FC = () => {
                      <Route exact path="/">
                         <Home />
                      </Route>
+
                      <Route path="/publications">
                         <Publications />
                      </Route>
