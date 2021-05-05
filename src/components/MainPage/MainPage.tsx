@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
+import React, { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { Home } from '../Home/Home';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
@@ -9,8 +10,13 @@ import Entities from '../Entities/Entities';
 import Ecosystem from '../Ecosystem/Ecosystem';
 import Publications from '../Publications/Publications';
 
+import { getUsers } from '../../redux/actions/usersActions';
+import { getComments } from '../../redux/actions/commentsActions';
+
+type GetUsers = ReturnType<typeof getUsers>;
+type GetComments = ReturnType<typeof getComments>;
+
 const Wrapper = styled.div`
-   background: #eceff3;
    padding: 5px;
 `;
 
@@ -28,11 +34,17 @@ const Content = styled.div`
 `;
 
 export const MainPage: FC = () => {
+   const dispatch = useDispatch();
+   useEffect(() => {
+      dispatch<GetUsers>(getUsers());
+      dispatch<GetComments>(getComments());
+   }, []);
+
    return (
       <Router>
          <Wrapper>
+            <TopNav />
             <InnerWrapper>
-               <TopNav />
                <Content>
                   <LeftMenu />
                   <Switch>

@@ -33,11 +33,47 @@ const NavList = styled.ul`
    display: flex;
 `;
 
-const NavListItem = styled.li`
-   margin: 10px;
-`;
+interface NavListItemProps {
+   notifications: boolean;
+}
 
-// const RightIcons = styled.div``;
+const NavListItem = styled.li<NavListItemProps>`
+   width: 32px;
+   height: 32px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 10px;
+   padding: 3px;
+   border-radius: 50%;
+   position: relative;
+
+   img {
+      width: 20px;
+   }
+
+   ${(props) => {
+      if (props.notifications)
+         return `
+        background-color: #ddd;
+
+        &::after {
+         content:"5";
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position:absolute;
+         top:-3px;
+         right:-3px;
+         padding: 2px 5px;
+         border-radius: 10px;
+         color: #fff;
+         background-color: #279fe4;
+         font-size: 10px;
+        }
+        `;
+   }}
+`;
 
 export const TopNav: FC = () => {
    return (
@@ -46,22 +82,16 @@ export const TopNav: FC = () => {
             <Logo src="./icons/logo.png" alt="" />
          </LogoSelectWrapper>
          <Dropdown />
-         <Search />
+         <Search width="400px" placeholder="Search legalcluster" />
          <NavList>
-            <NavListItem>
-               <a href="/">
-                  <img src="./icons/house.png" alt="" />{' '}
-               </a>
+            <NavListItem notifications={false}>
+               <img src="./icons/house.png" alt="" />{' '}
             </NavListItem>
-            <NavListItem>
-               <a href="/">
-                  <img src="./icons/comments.png" alt="" />{' '}
-               </a>
+            <NavListItem notifications={true}>
+               <img src="./icons/comments.png" alt="" />{' '}
             </NavListItem>
-            <NavListItem>
-               <a href="/">
-                  <img src="./icons/bell.png" alt="" />{' '}
-               </a>
+            <NavListItem notifications={true}>
+               <img src="./icons/bell.png" alt="" />{' '}
             </NavListItem>
          </NavList>
       </Wrapper>

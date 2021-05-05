@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MainPage } from './components/MainPage/MainPage';
+import { Provider } from 'react-redux';
+import store from './redux/tools/store';
 
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { Colors } from './styledHelpers/Colors';
+
+import { MainPage } from './components/MainPage/MainPage';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -20,12 +24,16 @@ const GlobalStyle = createGlobalStyle`
   a {
 text-decoration: none 
  }
+
+ body {
+    background-color: ${Colors.background}
+ }
 `;
 
 ReactDOM.render(
-   <>
+   <Provider store={store}>
       <GlobalStyle />
       <MainPage />
-   </>,
+   </Provider>,
    document.getElementById('root'),
 );

@@ -1,0 +1,25 @@
+enum Icons {
+   administration = './icons/administration.png',
+   arrowDown = './icons/arrow-down.png',
+   bell = './icons/bell.png',
+   bor = './icons/bor.png',
+   cog = './icons/cog.png',
+   comments = './icons/comments.png',
+   ecosystem = './icons/ecosystem.png',
+   entities = './icons/entities.png',
+   entities2 = './icons/entities2.png',
+   house = './icons/house.png',
+   house2 = './icons/house2.png',
+   logo = './icons/logo.png',
+   logout = './icons/logout.png',
+   network = './icons/network.png',
+   people = './icons/people.png',
+   plus = './icons/plus.png',
+   privacy = './icons/privacy.png',
+   publications = './icons/publications.png',
+   search = './icons/search.png',
+   settings = './icons/settings.png',
+   userPlus = './icons/user-plus.png',
+}
+
+export default Icons;
