@@ -1,5 +1,10 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { IState } from '../../redux/reducers';
+import { IPhotosReducer } from '../../redux/reducers/photosReducers';
+import { IPostsReducer } from '../../redux/reducers/postsReducers';
+import { IUsersReducer } from '../../redux/reducers/usersReducers';
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
 import Publication from '../common/Publication/Publication';
@@ -41,38 +46,79 @@ const Footer = styled.h3`
 export interface LatestPublicationsProps {}
 
 const LatestPublications: React.FC = () => {
-   const data = [
-      {
-         title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-         photoURL: 'https://picsum.photos/300',
-      },
-      {
-         title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-         photoURL: 'https://picsum.photos/64',
-      },
-      {
-         title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-         photoURL: 'https://picsum.photos/64',
-      },
-      {
-         title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-         photoURL: 'https://picsum.photos/64',
-      },
-   ];
+   const { usersList, photos, posts } = useSelector<
+      IState,
+      IUsersReducer & IPhotosReducer & IPostsReducer
+   >((globalState) => ({
+      ...globalState.users,
+      ...globalState.photos,
+      ...globalState.posts,
+   }));
+   // const data = [
+   //    {
+   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
+   //       photoURL: 'https://picsum.photos/300',
+   //    },
+   //    {
+   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
+   //       photoURL: 'https://picsum.photos/64',
+   //    },
+   //    {
+   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
+   //       photoURL: 'https://picsum.photos/64',
+   //    },
+   //    {
+   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
+   //       photoURL: 'https://picsum.photos/64',
+   //    },
+   // ];
 
    return (
       <LatestPublication>
-         {data && <Publication isMain={true} photoURL={data[0].photoURL} title={data[0].title} />}
+         <Publication
+            isMain={true}
+            photoURL={photos[0]?.url}
+            title={posts[0]?.title}
+            author={usersList[posts[0]?.userId]?.name}
+            authorImg={photos[posts[0]?.userId]?.thumbnailUrl}
+         />
+
          <InnerWrapper>
-            <Header>Latest publications</Header>
-            {data &&
+            <Header>Latest publications</Header>{' '}
+            <Publication
+               photoURL={photos[25]?.thumbnailUrl}
+               title={posts[25]?.title}
+               author={usersList[posts[25]?.userId]?.name}
+               authorImg={photos[posts[25]?.userId]?.thumbnailUrl}
+            />
+            <Publication
+               photoURL={photos[50]?.thumbnailUrl}
+               title={posts[50]?.title}
+               author={usersList[posts[50]?.userId]?.name}
+               authorImg={photos[posts[50]?.userId]?.thumbnailUrl}
+            />
+            <Publication
+               photoURL={photos[80]?.thumbnailUrl}
+               title={posts[80]?.title}
+               author={usersList[posts[80]?.userId]?.name}
+               authorImg={photos[posts[80]?.userId]?.thumbnailUrl}
+            />
+            {/* {data &&
                data.map((el, index) => {
                   if (index === 0) {
                      return;
                   } else {
-                     return <Publication key={index} photoURL={el.photoURL} title={el.title} />;
+                     return (
+                        <Publication
+                           key={index}
+                           photoURL={el.photoURL}
+                           title={posts[0].title}
+                           author={usersList[posts[0].userId].name}
+                           authorImg={photos[posts[0].userId].thumbnailUrl}
+                        />
+                     );
                   }
-               })}
+               })} */}
             <Footer>See more publications</Footer>
          </InnerWrapper>
       </LatestPublication>

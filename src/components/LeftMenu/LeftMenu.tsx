@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
 import LeftMenuListItem from './LeftMenuListItem';
+import { useSelector } from 'react-redux';
+import { IState } from '../../redux/reducers';
+import { IUsersReducer } from '../../redux/reducers/usersReducers';
+import { IPhotosReducer } from '../../redux/reducers/photosReducers';
 
 const Wrapper = styled.section``;
 
@@ -33,10 +37,10 @@ const ProfileContainer = styled.div`
    border-bottom: 1px solid ${Colors.lightgrey};
 `;
 
-const ProfilePhoto = styled.div`
-   background-image: url('./icons/bor.png');
+const ProfilePhoto = styled.img`
+   /* background-image: url('./icons/bor.png');
    background-size: cover;
-   background-position: center;
+   background-position: center; */
    border-radius: 50%;
    width: 64px;
    height: 64px;
@@ -89,13 +93,24 @@ const OptionButton = styled.button`
 `;
 
 export const LeftMenu: FC = () => {
+   const { usersList, photos } = useSelector<IState, IUsersReducer & IPhotosReducer>(
+      (globalState) => ({
+         ...globalState.users,
+         ...globalState.photos,
+      }),
+   );
+
    return (
       <Wrapper>
          <Profile>
             <ProfileContainer>
-               <ProfilePhoto />
-               <ProfileName>Matt Bor</ProfileName>
-               <ProfileTitle>Job title - Company</ProfileTitle>
+               {usersList[5] && (
+                  <>
+                     <ProfilePhoto src={photos[usersList[5].id]?.thumbnailUrl} />
+                     <ProfileName>{usersList[5].name}</ProfileName>
+                     <ProfileTitle>{usersList[5].company.name}</ProfileTitle>
+                  </>
+               )}
             </ProfileContainer>
             <Option>
                <OptionInnerWrapper>

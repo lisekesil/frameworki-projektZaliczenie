@@ -21,11 +21,6 @@ const Tile = styled.article<TileProps>`
    position: relative;
 `;
 
-const BackgroundImg = styled.img`
-   height: 70px;
-   width: 100%;
-`;
-
 const ContentContainer = styled.div`
    position: absolute;
    bottom: 0;

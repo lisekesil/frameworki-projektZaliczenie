@@ -47,20 +47,27 @@ const FooterUpdate = styled.span`
    color: ${Colors.grey};
 `;
 
+const FooterAuthorPhoto = styled.img`
+   width: 16px;
+   border-radius: 50%;
+`;
+
 export interface CommentProps {
    body: string;
    title: string;
+   author: string;
+   photo: string;
 }
 
-const Comment: React.FC<CommentProps> = ({ body, title }) => {
+const Comment: React.FC<CommentProps> = ({ body, title, author, photo }) => {
    return (
       <Wrapper>
          <Header>{title}</Header>
          <Content>{body}</Content>
          <Footer>
             <FooterInfo>
-               <Icon width="14px" height="14px" imgSrc={Icons.network} />
-               <span>Subsid. corp.</span>
+               <FooterAuthorPhoto src={photo} alt="" />
+               <span>{author}</span>
             </FooterInfo>
             <FooterInfo>
                <Icon width="14px" height="14px" imgSrc={Icons.network} />

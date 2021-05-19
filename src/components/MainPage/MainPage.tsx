@@ -12,9 +12,14 @@ import Publications from '../Publications/Publications';
 
 import { getUsers } from '../../redux/actions/usersActions';
 import { getComments } from '../../redux/actions/commentsActions';
+import { getPosts } from '../../redux/actions/postsActions';
+import { getPhotos } from '../../redux/actions/photosActions';
+import Profile from '../Profile/Profile';
 
 type GetUsers = ReturnType<typeof getUsers>;
 type GetComments = ReturnType<typeof getComments>;
+type GetPosts = ReturnType<typeof getPosts>;
+type GetPhotos = ReturnType<typeof getPhotos>;
 
 const Wrapper = styled.div`
    padding: 5px;
@@ -38,6 +43,8 @@ export const MainPage: FC = () => {
    useEffect(() => {
       dispatch<GetUsers>(getUsers());
       dispatch<GetComments>(getComments());
+      dispatch<GetPosts>(getPosts());
+      dispatch<GetPhotos>(getPhotos());
    }, []);
 
    return (
@@ -60,6 +67,9 @@ export const MainPage: FC = () => {
                      </Route>
                      <Route path="/entities">
                         <Entities />
+                     </Route>
+                     <Route path="/profile">
+                        <Profile />
                      </Route>
                   </Switch>
                </Content>

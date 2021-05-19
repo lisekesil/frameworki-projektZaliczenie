@@ -24,14 +24,17 @@ const Author = styled.span`
    color: ${Colors.darkblue};
 `;
 
-export interface PublicationFooterProps {}
+export interface PublicationFooterProps {
+   author: string;
+   authorImg: string;
+}
 
-const PublicationFooter: React.FC = () => {
+const PublicationFooter: FC<PublicationFooterProps> = ({ author, authorImg }) => {
    return (
       <Footer>
          <Date>7 Jan 2020</Date>
-         <Avatar src="./icons/bor.png" alt="" />
-         <Author>John Doe</Author>
+         <Avatar src={authorImg} alt="" />
+         <Author>{author}</Author>
       </Footer>
    );
 };

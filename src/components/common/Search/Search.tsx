@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -27,12 +27,14 @@ const Loupe = styled.img`
 export interface SearchProps {
    placeholder: string;
    width: string;
+   value?: string;
+   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Search: FC<SearchProps> = ({ placeholder, width }) => {
+const Search: FC<SearchProps> = ({ placeholder, width, value, onChange }) => {
    return (
       <Wrapper>
-         <SearchInput width={width} placeholder={placeholder} />
+         <SearchInput onChange={onChange} value={value} width={width} placeholder={placeholder} />
          <Loupe src="./icons/search.png" alt="" />
       </Wrapper>
    );
