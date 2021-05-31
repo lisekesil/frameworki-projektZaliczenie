@@ -38,9 +38,6 @@ const ProfileContainer = styled.div`
 `;
 
 const ProfilePhoto = styled.img`
-   /* background-image: url('./icons/bor.png');
-   background-size: cover;
-   background-position: center; */
    border-radius: 50%;
    width: 64px;
    height: 64px;

@@ -187,7 +187,7 @@ const Dropdown: React.FC<DropdownProps> = () => {
                      )}
                   </OptionsWrapper>
                   <SectionLabel>Account</SectionLabel>
-                  <Profile to="/profile">
+                  <Profile to="/profile" onClick={closeDropdown}>
                      <ProfileImg src={photos[usersList[5].id].thumbnailUrl} alt="" />
                      <ProfileLabel>
                         <ProfileName>{usersList[5].name}</ProfileName>
