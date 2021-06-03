@@ -5,6 +5,7 @@ import Search from '../common/Search/Search';
 
 import { Colors } from '../../styledHelpers/Colors';
 import Dropdown from './Dropdown';
+import { shadow } from '../../styledHelpers/Shadow';
 
 const Wrapper = styled.div`
    position: relative;
@@ -15,9 +16,9 @@ const Wrapper = styled.div`
    background-color: ${Colors.white};
 
    border-radius: 7px;
-   box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
-   -webkit-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
-   -moz-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
+   box-shadow: ${shadow};
+   -webkit-box-shadow: ${shadow};
+   -moz-box-shadow: ${shadow};
 `;
 
 const Logo = styled.img`

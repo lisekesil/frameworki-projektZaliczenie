@@ -54,24 +54,6 @@ const LatestPublications: React.FC = () => {
       ...globalState.photos,
       ...globalState.posts,
    }));
-   // const data = [
-   //    {
-   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-   //       photoURL: 'https://picsum.photos/300',
-   //    },
-   //    {
-   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-   //       photoURL: 'https://picsum.photos/64',
-   //    },
-   //    {
-   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-   //       photoURL: 'https://picsum.photos/64',
-   //    },
-   //    {
-   //       title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, provident iste',
-   //       photoURL: 'https://picsum.photos/64',
-   //    },
-   // ];
 
    return (
       <LatestPublication>
@@ -103,22 +85,6 @@ const LatestPublications: React.FC = () => {
                author={usersList[posts[80]?.userId]?.name}
                authorImg={photos[posts[80]?.userId]?.thumbnailUrl}
             />
-            {/* {data &&
-               data.map((el, index) => {
-                  if (index === 0) {
-                     return;
-                  } else {
-                     return (
-                        <Publication
-                           key={index}
-                           photoURL={el.photoURL}
-                           title={posts[0].title}
-                           author={usersList[posts[0].userId].name}
-                           authorImg={photos[posts[0].userId].thumbnailUrl}
-                        />
-                     );
-                  }
-               })} */}
             <Footer>See more publications</Footer>
          </InnerWrapper>
       </LatestPublication>
