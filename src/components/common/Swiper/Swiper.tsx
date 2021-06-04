@@ -5,6 +5,10 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Icons from '../Icon/Icons.enum';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../redux/reducers';
+import { IWorkspacesReducer } from '../../../redux/reducers/workspacesReducers';
+import { Link } from 'react-router-dom';
 
 const Container = styled.section`
    width: 100%;
@@ -16,16 +20,12 @@ const SectionHeader = styled.h2`
    font-weight: 700;
 `;
 
-export interface WorkspacesProps {}
+export interface SwiperProps {}
 
-const Workspaces: React.FC<WorkspacesProps> = () => {
-   const dataWorkspaces = [
-      { imgSrc: Icons.cog, label: 'Client contract' },
-      { imgSrc: Icons.cog, label: 'Supplier contract' },
-      { imgSrc: Icons.entities2, label: 'Corporate' },
-      { imgSrc: Icons.cog, label: 'Group Norms' },
-      { imgSrc: Icons.cog, label: 'Real estate contracts' },
-   ];
+const Swiper: React.FC<SwiperProps> = () => {
+   const { workspaces } = useSelector<IState, IWorkspacesReducer>((globalState) => ({
+      ...globalState.workspaces,
+   }));
 
    const settings = {
       dots: true,
@@ -40,18 +40,18 @@ const Workspaces: React.FC<WorkspacesProps> = () => {
       <Container>
          <SectionHeader>Workspaces</SectionHeader>
          <Slider {...settings}>
-            {dataWorkspaces.map((el) => (
-               <div key={el.label}>
+            {workspaces.map((el) => (
+               <Link to={'/' + el.link} key={el.label}>
                   <SliderTile
                      bgImgSrc="https://picsum.photos/300"
                      title={el.label}
                      imgSrc={el.imgSrc}
                   />
-               </div>
+               </Link>
             ))}
          </Slider>
       </Container>
    );
 };
 
-export default Workspaces;
+export default Swiper;

@@ -13,6 +13,7 @@ import { fontSize } from '../../styledHelpers/FontSizes';
 import Icon from '../common/Icon/Icon';
 import Icons from '../common/Icon/Icons.enum';
 import { IPhotosReducer } from '../../redux/reducers/photosReducers';
+import { IWorkspacesReducer } from '../../redux/reducers/workspacesReducers';
 
 const SelectPage = styled.div`
    background-color: ${Colors.white};
@@ -97,12 +98,14 @@ const Footer = styled.footer`
 export interface DropdownProps {}
 
 const Dropdown: React.FC<DropdownProps> = () => {
-   const { usersList, photos } = useSelector<IState, IUsersReducer & IPhotosReducer>(
-      (globalState) => ({
-         ...globalState.users,
-         ...globalState.photos,
-      }),
-   );
+   const { usersList, photos, workspaces } = useSelector<
+      IState,
+      IUsersReducer & IPhotosReducer & IWorkspacesReducer
+   >((globalState) => ({
+      ...globalState.users,
+      ...globalState.photos,
+      ...globalState.workspaces,
+   }));
 
    const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] = useDropdown();
    const [filtered, setFiltered] = useState<{ imgSrc: string; label: string }[]>([]);
@@ -114,15 +117,7 @@ const Dropdown: React.FC<DropdownProps> = () => {
       { imgSrc: './icons/administration.png', label: 'Administration' },
    ];
 
-   const dataWorkspaces = [
-      { imgSrc: './icons/cog.png', label: 'Client contract' },
-      { imgSrc: './icons/cog.png', label: 'Supplier contract' },
-      { imgSrc: './icons/entities2.png', label: 'Corporate' },
-      { imgSrc: './icons/cog.png', label: 'Group Norms' },
-      { imgSrc: './icons/cog.png', label: 'Real estate contracts' },
-   ];
-
-   const allData = [...dataPlatform, ...dataWorkspaces];
+   const allData = [...dataPlatform, ...workspaces];
 
    const filterMenu = (e: ChangeEvent<HTMLInputElement>) => {
       const filtered = allData.filter((el) =>
@@ -174,8 +169,8 @@ const Dropdown: React.FC<DropdownProps> = () => {
                               </Link>
                            ))}
                            <SectionLabel>Workspaces</SectionLabel>
-                           {dataWorkspaces.map((el, index) => (
-                              <Link key={el.label + index} to={'/' + el.label}>
+                           {workspaces.map((el, index) => (
+                              <Link key={el.label + index} to={'/' + el.link}>
                                  <DropdownItem
                                     onClick={closeDropdown}
                                     imgSrc={el.imgSrc}

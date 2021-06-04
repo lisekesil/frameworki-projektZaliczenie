@@ -7,14 +7,14 @@ import { Home } from '../Home/Home';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
 import { TopNav } from '../TopNav/TopNav';
 import Entities from '../Entities/Entities';
-import Ecosystem from '../Ecosystem/Ecosystem';
-import Publications from '../Publications/Publications';
 
 import { getUsers } from '../../redux/actions/usersActions';
 import { getComments } from '../../redux/actions/commentsActions';
 import { getPosts } from '../../redux/actions/postsActions';
 import { getPhotos } from '../../redux/actions/photosActions';
 import Profile from '../Profile/Profile';
+import Workspace from '../Workspace/Workspace';
+import DummyPage from '../DummyPage/DummyPage';
 
 type GetUsers = ReturnType<typeof getUsers>;
 type GetComments = ReturnType<typeof getComments>;
@@ -58,17 +58,17 @@ export const MainPage: FC = () => {
                      <Route exact path="/">
                         <Home />
                      </Route>
-                     <Route path="/publications">
-                        <Publications />
-                     </Route>
-                     <Route path="/ecosystem">
-                        <Ecosystem />
-                     </Route>
                      <Route path="/entities">
                         <Entities />
                      </Route>
                      <Route path="/profile">
                         <Profile />
+                     </Route>
+                     <Route path={['/ecosystem', '/people', '/administration', '/publications']}>
+                        <DummyPage />
+                     </Route>
+                     <Route path="/:name">
+                        <Workspace />
                      </Route>
                   </Switch>
                </Content>

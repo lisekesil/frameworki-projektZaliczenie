@@ -8,7 +8,6 @@ import { shadow } from '../../../styledHelpers/Shadow';
 
 const Wrapper = styled.article`
    width: 100%;
-   /* height: 100px; */
    padding: 10px;
    margin-bottom: 10px;
    background-color: ${Colors.white};

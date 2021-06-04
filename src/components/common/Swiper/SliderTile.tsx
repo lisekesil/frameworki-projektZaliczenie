@@ -14,7 +14,6 @@ const Tile = styled.article<TileProps>`
    width: 230px;
    height: 170px;
    background-image: url(${(p) => p.bgImgSrc});
-   /* background-color: ${Colors.white}; */
    box-shadow: ${shadow};
    border-radius: 5px;
 
@@ -84,7 +83,6 @@ export interface SliderTileProps {
 const SliderTile: React.FC<SliderTileProps & TileProps> = ({ title, imgSrc, bgImgSrc }) => {
    return (
       <Tile bgImgSrc={bgImgSrc}>
-         {/* <BackgroundImg src="https://picsum.photos/300" alt="" /> */}
          <ContentContainer>
             <Main>
                <MainIconContainer>
