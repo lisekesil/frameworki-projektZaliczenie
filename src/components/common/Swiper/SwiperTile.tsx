@@ -12,7 +12,7 @@ interface TileProps {
 
 const Tile = styled.article<TileProps>`
    width: 230px;
-   height: 170px;
+   height: 180px;
    background-image: url(${(p) => p.bgImgSrc});
    box-shadow: ${shadow};
    border-radius: 5px;
@@ -24,7 +24,7 @@ const ContentContainer = styled.div`
    position: absolute;
    bottom: 0;
    width: 100%;
-   height: 100px;
+   height: 110px;
    background-color: ${Colors.white};
 `;
 
@@ -65,6 +65,10 @@ const Footer = styled.footer`
    left: 12px;
    font-size: ${fontSize[14]};
    color: ${Colors.darkgrey};
+
+   footer {
+      color: ${Colors.grey};
+   }
 `;
 
 const FooterInfo = styled.div`
@@ -75,12 +79,12 @@ const FooterIconInfo = styled.span`
    padding: 0 20px 10px 5px;
 `;
 
-export interface SliderTileProps {
+export interface SwiperTileProps {
    title: string;
    imgSrc: Icons;
 }
 
-const SliderTile: React.FC<SliderTileProps & TileProps> = ({ title, imgSrc, bgImgSrc }) => {
+const SwiperTile: React.FC<SwiperTileProps & TileProps> = ({ title, imgSrc, bgImgSrc }) => {
    return (
       <Tile bgImgSrc={bgImgSrc}>
          <ContentContainer>
@@ -104,4 +108,4 @@ const SliderTile: React.FC<SliderTileProps & TileProps> = ({ title, imgSrc, bgIm
    );
 };
 
-export default SliderTile;
+export default SwiperTile;

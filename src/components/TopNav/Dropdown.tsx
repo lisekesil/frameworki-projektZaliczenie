@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../redux/reducers/usersReducers';
 import { IState } from '../../redux/reducers';
 
+import { X, ChevronDown } from 'react-feather';
 import { Colors } from '../../styledHelpers/Colors';
 import DropdownItem from './DropdownItem';
 import Search from '../common/Search/Search';
@@ -18,7 +19,7 @@ import { IWorkspacesReducer } from '../../redux/reducers/workspacesReducers';
 const SelectPage = styled.div`
    background-color: ${Colors.white};
    position: absolute;
-   top: 0;
+   top: 3px;
    left: 80px;
 
    width: 250px;
@@ -30,10 +31,13 @@ const SelectPage = styled.div`
    border-radius: 7px;
 `;
 
-const ToggleMenu = styled.span`
+const ToggleMenu = styled.button`
    position: absolute;
    right: 10px;
    top: 10px;
+   cursor: pointer;
+   border: none;
+   background: transparent;
 `;
 
 const Filter = styled.div`
@@ -51,6 +55,7 @@ const SectionLabel = styled.h4`
    color: ${Colors.darkgrey};
    padding: 10px;
 `;
+
 const Profile = styled(Link)`
    display: flex;
    margin: 0 30px 0 5px;
@@ -127,27 +132,38 @@ const Dropdown: React.FC<DropdownProps> = () => {
    };
 
    return (
-      <>
-         <SelectPage ref={wrapperRef}>
-            <Link to="/">
-               <DropdownItem onClick={closeDropdown} imgSrc="./icons/house2.png" label="Home" />
-            </Link>
-            <ToggleMenu onClick={toggleDropdown}>
-               <Icon
-                  width="10px"
-                  height="10px"
-                  imgSrc={dropdownOpen ? Icons.plus : Icons.arrowDown}
-               />
-            </ToggleMenu>
+      <SelectPage ref={wrapperRef}>
+         <Link to="/">
+            <DropdownItem onClick={closeDropdown} imgSrc="./icons/house2.png" label="Home" />
+         </Link>
+         <ToggleMenu onClick={toggleDropdown}>
+            <Icon
+               width="16px"
+               height="16px"
+               imgSrc={dropdownOpen ? Icons.close : Icons.arrowDown}
+            />
+         </ToggleMenu>
 
-            {dropdownOpen && (
-               <>
-                  <Filter>
-                     <Search width="220px" placeholder="Filter" onChange={(e) => filterMenu(e)} />
-                  </Filter>
-                  <OptionsWrapper>
-                     {filtered.length > 0 && filtered.length < allData.length ? (
-                        filtered.map((el, index) => (
+         {dropdownOpen && (
+            <>
+               <Filter>
+                  <Search width="220px" placeholder="Filter" onChange={(e) => filterMenu(e)} />
+               </Filter>
+               <OptionsWrapper>
+                  {filtered.length > 0 && filtered.length < allData.length ? (
+                     filtered.map((el, index) => (
+                        <Link key={el.label + index} to={'/' + el.label}>
+                           <DropdownItem
+                              onClick={closeDropdown}
+                              imgSrc={el.imgSrc}
+                              label={el.label}
+                           />
+                        </Link>
+                     ))
+                  ) : (
+                     <>
+                        <SectionLabel>Platform</SectionLabel>
+                        {dataPlatform.map((el, index) => (
                            <Link key={el.label + index} to={'/' + el.label}>
                               <DropdownItem
                                  onClick={closeDropdown}
@@ -155,50 +171,37 @@ const Dropdown: React.FC<DropdownProps> = () => {
                                  label={el.label}
                               />
                            </Link>
-                        ))
-                     ) : (
-                        <>
-                           <SectionLabel>Platform</SectionLabel>
-                           {dataPlatform.map((el, index) => (
-                              <Link key={el.label + index} to={'/' + el.label}>
-                                 <DropdownItem
-                                    onClick={closeDropdown}
-                                    imgSrc={el.imgSrc}
-                                    label={el.label}
-                                 />
-                              </Link>
-                           ))}
-                           <SectionLabel>Workspaces</SectionLabel>
-                           {workspaces.map((el, index) => (
-                              <Link key={el.label + index} to={'/' + el.link}>
-                                 <DropdownItem
-                                    onClick={closeDropdown}
-                                    imgSrc={el.imgSrc}
-                                    label={el.label}
-                                 />
-                              </Link>
-                           ))}
-                        </>
-                     )}
-                  </OptionsWrapper>
-                  <SectionLabel>Account</SectionLabel>
-                  <Profile to="/profile" onClick={closeDropdown}>
-                     <ProfileImg src={photos[usersList[5].id].thumbnailUrl} alt="" />
-                     <ProfileLabel>
-                        <ProfileName>{usersList[5].name}</ProfileName>
-                        <ProfileSee>See profile</ProfileSee>
-                     </ProfileLabel>
-                  </Profile>
-                  <DropdownItem onClick={closeDropdown} imgSrc={Icons.privacy} label="Privacy" />
-                  <DropdownItem onClick={closeDropdown} imgSrc={Icons.settings} label="Settings" />
-                  <Footer>
-                     <Icon imgSrc={Icons.logout} width="24px" height="24px" />
-                     <span>Logout</span>
-                  </Footer>
-               </>
-            )}
-         </SelectPage>
-      </>
+                        ))}
+                        <SectionLabel>Workspaces</SectionLabel>
+                        {workspaces.map((el, index) => (
+                           <Link key={el.label + index} to={'/' + el.link}>
+                              <DropdownItem
+                                 onClick={closeDropdown}
+                                 imgSrc={el.imgSrc}
+                                 label={el.label}
+                              />
+                           </Link>
+                        ))}
+                     </>
+                  )}
+               </OptionsWrapper>
+               <SectionLabel>Account</SectionLabel>
+               <Profile to="/profile" onClick={closeDropdown}>
+                  <ProfileImg src={photos[usersList[5].id].thumbnailUrl} alt="" />
+                  <ProfileLabel>
+                     <ProfileName>{usersList[5].name}</ProfileName>
+                     <ProfileSee>See profile</ProfileSee>
+                  </ProfileLabel>
+               </Profile>
+               <DropdownItem onClick={closeDropdown} imgSrc={Icons.privacy} label="Privacy" />
+               <DropdownItem onClick={closeDropdown} imgSrc={Icons.settings} label="Settings" />
+               <Footer>
+                  <Icon imgSrc={Icons.logout} width="24px" height="24px" />
+                  <span>Logout</span>
+               </Footer>
+            </>
+         )}
+      </SelectPage>
    );
 };
 

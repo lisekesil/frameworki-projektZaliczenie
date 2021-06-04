@@ -18,6 +18,7 @@ import { IPostsReducer } from '../../../redux/reducers/postsReducers';
 const Wrapper = styled.section`
    width: 100%;
    margin-top: 20px;
+   margin-bottom: 40px;
 `;
 
 const Header = styled.div`
@@ -54,7 +55,7 @@ export interface ResumeYourWorkProps {}
 
 const ResumeYourWork: React.FC<ResumeYourWorkProps> = () => {
    const [currentPage, setCurrentPage] = useState(1);
-   const [commentsPerPage] = useState(15);
+   const [commentsPerPage] = useState(20);
    const [phrase, setPhrase] = useState('');
    const [currentComments, setCurrentComments] = useState<ISingleComment[]>();
    const [isPagination, setIsPagination] = useState(true);
@@ -95,6 +96,15 @@ const ResumeYourWork: React.FC<ResumeYourWorkProps> = () => {
    }, [phrase, currentPage]);
 
    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+   const nextPage = () => {
+      if (Math.ceil(comments.length / commentsPerPage) <= currentPage) return;
+      setCurrentPage(currentPage + 1);
+   };
+   const prevPage = () => {
+      if (currentPage <= 1) return;
+      setCurrentPage(currentPage - 1);
+   };
 
    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
       const userinput = e.target.value;
@@ -141,7 +151,14 @@ const ResumeYourWork: React.FC<ResumeYourWorkProps> = () => {
          </Header>
          {currentComments && <Comments comments={currentComments} />}
          {isPagination && (
-            <Pagination perPage={commentsPerPage} total={comments.length} paginate={paginate} />
+            <Pagination
+               perPage={commentsPerPage}
+               curPage={currentPage}
+               total={comments.length}
+               paginate={paginate}
+               next={nextPage}
+               prev={prevPage}
+            />
          )}
       </Wrapper>
    );

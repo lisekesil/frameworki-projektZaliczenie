@@ -3,6 +3,7 @@ enum Icons {
    arrowDown = './icons/arrow-down.png',
    bell = './icons/bell.png',
    bor = './icons/bor.png',
+   close = './icons/close.png',
    cog = './icons/cog.png',
    comments = './icons/comments.png',
    ecosystem = './icons/ecosystem.png',

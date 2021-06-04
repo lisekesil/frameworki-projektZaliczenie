@@ -28,7 +28,7 @@ const Profile = styled.div`
    -moz-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
 `;
 
-const ProfileContainer = styled.div`
+const ProfileContainer = styled(Link)`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -100,7 +100,7 @@ export const LeftMenu: FC = () => {
    return (
       <Wrapper>
          <Profile>
-            <ProfileContainer>
+            <ProfileContainer to="/profile">
                {usersList[5] && (
                   <>
                      <ProfilePhoto src={photos[usersList[5].id]?.thumbnailUrl} />

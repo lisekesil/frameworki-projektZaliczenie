@@ -27,6 +27,7 @@ const Wrapper = styled.article`
 
    width: 750px;
    margin-right: 50px;
+   margin-bottom: 50px;
    padding: 20px;
    background-color: ${Colors.white};
 `;
