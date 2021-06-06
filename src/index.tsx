@@ -7,7 +7,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import { Colors } from './styledHelpers/Colors';
 
-import { MainPage } from './components/MainPage/MainPage';
+import { MainPage } from './pages/MainPage/MainPage';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}

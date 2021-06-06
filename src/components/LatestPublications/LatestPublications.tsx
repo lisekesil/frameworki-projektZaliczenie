@@ -7,7 +7,7 @@ import { IPostsReducer } from '../../redux/reducers/postsReducers';
 import { IUsersReducer } from '../../redux/reducers/usersReducers';
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
-import Publication from '../common/Publication/Publication';
+import Publication from '../Publication/Publication';
 
 const LatestPublication = styled.article`
    width: 100%;

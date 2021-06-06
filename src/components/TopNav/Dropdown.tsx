@@ -6,13 +6,12 @@ import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../redux/reducers/usersReducers';
 import { IState } from '../../redux/reducers';
 
-import { X, ChevronDown } from 'react-feather';
 import { Colors } from '../../styledHelpers/Colors';
 import DropdownItem from './DropdownItem';
-import Search from '../common/Search/Search';
+import Search from '../Search/Search';
 import { fontSize } from '../../styledHelpers/FontSizes';
-import Icon from '../common/Icon/Icon';
-import Icons from '../common/Icon/Icons.enum';
+import Icon from '../Icon/Icon';
+import Icons from '../Icon/Icons.enum';
 import { IPhotosReducer } from '../../redux/reducers/photosReducers';
 import { IWorkspacesReducer } from '../../redux/reducers/workspacesReducers';
 

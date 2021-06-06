@@ -1,4 +1,4 @@
-import Icons from '../../components/common/Icon/Icons.enum';
+import Icons from '../../components/Icon/Icons.enum';
 import { ISingleWorkspace } from '../entities/workspace';
 
 export interface IWorkspacesReducer {

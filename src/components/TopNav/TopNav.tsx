@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import Search from '../common/Search/Search';
+import Search from '../Search/Search';
 
 import { Colors } from '../../styledHelpers/Colors';
 import Dropdown from './Dropdown';
