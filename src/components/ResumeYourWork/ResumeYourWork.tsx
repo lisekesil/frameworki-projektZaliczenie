@@ -118,13 +118,9 @@ const ResumeYourWork: React.FC<ResumeYourWorkProps> = () => {
       } else if (e.target.value === 'followed') {
          setIsPagination(false);
          const followedPosts = posts.filter((post) => post.userId === usersList[5].id);
-         let x: any = [];
-         followedPosts.forEach((post) => {
-            const tmp = comments.filter((com) => (com.postId = post.id));
-            x = [...x, ...tmp];
-         });
-         setCurrentComments(x);
-         console.log('not implemented');
+         const postsIds = followedPosts.map((post) => post.id);
+         const followedComments = comments.filter((com) => postsIds.includes(com.postId));
+         setCurrentComments(followedComments);
       }
    };
 
