@@ -100,11 +100,6 @@ const Internal = styled.div`
    }
 `;
 
-const InternalName = styled.p`
-   font-weight: 700;
-   margin-right: 40px;
-`;
-
 const EditControls = styled.div`
    position: absolute;
    top: 20px;
@@ -135,7 +130,7 @@ const PanelInformations: React.FC<PanelInformationsProps> = () => {
          });
          setUsers(newUsers);
       }
-   }, []);
+   }, [usersList]);
 
    const editPanel = () => {
       setIsEditing(!isEditing);
@@ -167,7 +162,6 @@ const PanelInformations: React.FC<PanelInformationsProps> = () => {
                   <h3>Internal correspondents</h3>
                   <Internal>
                      <img src={photos[usersList[2]?.id]?.thumbnailUrl} alt="avatar" />
-                     {/* <InternalName>{usersList[2]?.name}</InternalName> */}
                      <Select options={users} selectName="users" isDisabled={isEditing}></Select>
                      <div>
                         <MessageCircle size={20} />
@@ -180,7 +174,6 @@ const PanelInformations: React.FC<PanelInformationsProps> = () => {
                   </Internal>
                   <Internal>
                      <img src={photos[usersList[2]?.id]?.thumbnailUrl} alt="avatar" />
-                     {/* <InternalName>{usersList[2]?.name}</InternalName> */}
                      <Select options={users} selectName="users" isDisabled={isEditing}></Select>
                      <div>
                         <MessageCircle size={20} />

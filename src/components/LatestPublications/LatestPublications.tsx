@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { IState } from '../../redux/reducers';
@@ -7,6 +7,7 @@ import { IPostsReducer } from '../../redux/reducers/postsReducers';
 import { IUsersReducer } from '../../redux/reducers/usersReducers';
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
+import { shadow } from '../../styledHelpers/Shadow';
 import Publication from '../Publication/Publication';
 
 const LatestPublication = styled.article`
@@ -17,9 +18,9 @@ const LatestPublication = styled.article`
    justify-content: space-evenly;
 
    border-radius: 7px;
-   box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
-   -webkit-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
-   -moz-box-shadow: 0px 2px 0px 0px rgba(77, 77, 77, 0.2);
+   box-shadow: ${shadow};
+   -webkit-box-shadow: ${shadow};
+   -moz-box-shadow: ${shadow};
 `;
 
 const InnerWrapper = styled.div`
@@ -45,7 +46,7 @@ const Footer = styled.h3`
 
 export interface LatestPublicationsProps {}
 
-const LatestPublications: React.FC = () => {
+const LatestPublications: FC = () => {
    const { usersList, photos, posts } = useSelector<
       IState,
       IUsersReducer & IPhotosReducer & IPostsReducer

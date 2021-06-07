@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
@@ -38,14 +38,14 @@ const Content = styled.div`
    justify-content: space-between;
 `;
 
-export const MainPage: FC = () => {
+export const MainPage: React.FC = () => {
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch<GetUsers>(getUsers());
       dispatch<GetComments>(getComments());
       dispatch<GetPosts>(getPosts());
       dispatch<GetPhotos>(getPhotos());
-   }, []);
+   }, [dispatch]);
 
    return (
       <Router>

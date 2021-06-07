@@ -74,7 +74,7 @@ const ResumeYourWork: React.FC<ResumeYourWorkProps> = () => {
 
    useEffect(() => {
       setCurrentComments(comments.slice(indexOfFirstPost, indexOfLastPost));
-   }, [comments]);
+   }, [comments, indexOfFirstPost, indexOfLastPost]);
 
    useEffect(() => {
       if (phrase.length === 0) {
@@ -93,7 +93,7 @@ const ResumeYourWork: React.FC<ResumeYourWorkProps> = () => {
             }
          }
       }
-   }, [phrase, currentPage]);
+   }, [phrase, currentPage, comments, indexOfLastPost, indexOfFirstPost]);
 
    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
