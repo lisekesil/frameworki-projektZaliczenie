@@ -8,7 +8,7 @@ import { IPhotosReducer } from '../../../redux/reducers/photosReducers';
 import { Colors } from '../../../styledHelpers/Colors';
 import { Field, Formik } from 'formik';
 import { fontSize } from '../../../styledHelpers/FontSizes';
-import { Edit3, Save } from 'react-feather';
+import { Edit3, Save, File } from 'react-feather';
 import Select from './Select';
 
 const Wrapper = styled.div`
@@ -42,6 +42,10 @@ const Panel = styled.section`
       font-size: ${fontSize[16]};
       font-family: inherit;
    }
+`;
+
+const PanelFile = styled.div`
+   position: relative;
 
    input[type='file'] {
       margin-top: 10px;
@@ -50,6 +54,18 @@ const Panel = styled.section`
       padding: 10px;
       width: 70%;
       cursor: pointer;
+
+      &::-webkit-file-upload-button {
+         visibility: hidden;
+      }
+   }
+
+   svg {
+      width: 20px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-70%);
+      left: 40px;
    }
 `;
 
@@ -154,7 +170,10 @@ const PanelInformations: React.FC<PanelInformationsProps> = () => {
                   <Field name="fee" type="text" disabled={!isEditing} />
                   <label>Terms & conditions</label>
                   <Field name="terms" type="text" disabled={!isEditing} />
-                  <input type="file" />
+                  <PanelFile>
+                     <File />
+                     <input type="file" />
+                  </PanelFile>
                </Panel>
                <Services>
                   <h3>Services & projects</h3>
