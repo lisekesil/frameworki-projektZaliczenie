@@ -136,7 +136,7 @@ const Content = styled.div<ContentProps>`
    grid-template-columns: ${(props) =>
       props.isList ? '1fr' : 'repeat(auto-fill, minmax(270px, 1fr))'};
    gap: 10px;
-   margin: auto;
+   margin: 0 auto;
 `;
 
 const Select = styled.select`
